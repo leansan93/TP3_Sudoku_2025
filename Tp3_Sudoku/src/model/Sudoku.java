@@ -5,25 +5,35 @@ import java.util.Random;
 public class Sudoku {
 	
 	// tabla del sudoku 
-	private int[][] tabla;
-	private int tamano; // tamaño de la tabla en este caso se comenzara 9x9 como default 
+	private int[][] tablaSudoku  = {
+		    {0, 0, 0, 0, 0, 2, 1, 0, 0},
+		    {1, 0, 2, 4, 6, 0, 0, 3, 9},
+		    {0, 0, 8, 1, 9, 7, 0, 5, 0},
+		    {0, 0, 0, 2, 0, 0, 7, 9, 3},
+		    {0, 4, 7, 0, 5, 9, 0, 0, 2},
+		    {0, 0, 0, 7, 1, 6, 4, 8, 0},
+		    {9, 0, 0, 6, 0, 0, 5, 0, 0},
+		    {0, 2, 0, 0, 0, 1, 0, 0, 4},
+		    {7, 0, 5, 9, 2, 0, 0, 0, 1}
+		};
+//	private int tamano; // tamaño de la tabla en este caso se comenzara 9x9 como default 
 	
-	public Sudoku (int tamano) {
-	this.tamano= tamano;
-	this.tabla= new int [tamano][tamano];	
+	public Sudoku ( ) {
+//	this.tamano= tamano;
+		
+	 
 	
 	}
 
 	
 	private  void crearTabla() {
-		 Random rand= new Random ();
-		for (int fil = 0 ; fil < tabla.length; fil ++) {
+		for (int fil = 0 ; fil < tablaSudoku.length; fil ++) {
 			
-			for (int col=0 ; col < tabla[0].length ; col ++  ) {
+			for (int col=0 ; col < tablaSudoku[0].length ; col ++  ) {
 				
-				tabla[fil][col]= rand.nextInt(9); // entre 0 hasta 9 
 				
-				System.out.print(tabla [fil ] [col] + "  " );
+				
+				System.out.print(tablaSudoku [fil ] [col] + "  " );
 			
 			}
 			System.out.println();
@@ -38,7 +48,7 @@ public class Sudoku {
 	// prueba main para la tabla sudoku 
 	public static void main(String[] args) {
 		
-		Sudoku table = new Sudoku (9);
+		Sudoku table = new Sudoku ();
 		 table.crearTabla() ;
 	}
 	
