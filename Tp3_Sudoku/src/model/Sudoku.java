@@ -5,7 +5,12 @@ import java.util.Random;
 public class Sudoku {
 	
 	// tabla del sudoku 
-	private int[][] tablaSudoku  = {
+	private int[][] tablaSudoku ; 
+
+	
+	public Sudoku ( ) {
+		
+	this.tablaSudoku= new int [][] {
 		    {0, 0, 0, 0, 0, 2, 1, 0, 0},
 		    {1, 0, 2, 4, 6, 0, 0, 3, 9},
 		    {0, 0, 8, 1, 9, 7, 0, 5, 0},
@@ -16,10 +21,6 @@ public class Sudoku {
 		    {0, 2, 0, 0, 0, 1, 0, 0, 4},
 		    {7, 0, 5, 9, 2, 0, 0, 0, 1}
 		};
-//	private int tamano; // tamaño de la tabla en este caso se comenzara 9x9 como default 
-	
-	public Sudoku ( ) {
-//	this.tamano= tamano;
 		
 	 
 	
