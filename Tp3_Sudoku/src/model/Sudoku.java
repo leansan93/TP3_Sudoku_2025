@@ -82,8 +82,13 @@ public class Sudoku {
 		Sudoku table = new Sudoku ();
 		 table.crearTabla() ;
 		 
-		 System.out.println(table.esValido(1, 0, 1)); // probando esvalido devolvera false
-		 System.out.println(table.esValido(0, 0, 5)); // devolvera true 
+		 System.out.println(table.esValido(1, 0, 1)); // probando esvalido devolvera false en la subtabla esta el 1 y el num es 1 
+		 System.out.println(table.esValido(0, 0, 5)); // devolvera true el num = 5 y 5 no esta en la subtabla ni a lo largo de la columna como fila 
+		 System.out.println(table.esValido(0, 1, 1)); // devuelve false el numero = 1 y en la subtabla esta el 1 
+		 System.out.println(table.esValido(0, 3, 1)); // devuelve false el numero = 1 y a lo largo de la fila esta el 1 
+		 System.out.println(table.esValido(0, 0, 7));  // devuelve false porque el num es 7 y a lo largo de la columna esta 7 
+		 System.out.println(table.esValido(0, 0, 5)); // devuelve true porque num es 5 y en la subclase como a lo largo de la columna y fila no esta el 5 
+
 	}
 	
 }
