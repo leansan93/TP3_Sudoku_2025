@@ -81,7 +81,9 @@ public class Sudoku {
 		
 		Sudoku table = new Sudoku ();
 		 table.crearTabla() ;
+		 
+		 System.out.println(table.esValido(1, 0, 1)); // probando esvalido devolvera false
+		 System.out.println(table.esValido(0, 0, 5)); // devolvera true 
 	}
-	
 	
 }
