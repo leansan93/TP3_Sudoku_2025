@@ -21,7 +21,7 @@ public class Backtracking {
 								 
 							 
 							 }  
-							 tablero [fila][col]=0 ; // backtracking
+							 tablero [fila][col] = 0 ; // backtracking
 							
 						}
 						

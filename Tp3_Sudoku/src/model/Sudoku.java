@@ -36,6 +36,7 @@ public class Sudoku {
 		
 	}
 	
+	// chequea tanto a lo largo de la tabla sudoku como los bloques 3x3 
 	boolean esValido (  int fila , int col, int num ) {
 		// Fila recorre y compara toda la fila con num si hay uno igual devolvera false y no sera valido
         for (int j = 0; j < 9; j++)
@@ -59,6 +60,9 @@ public class Sudoku {
         return true;
     }
 
+	
+
+	
 	// comprueba si la fila y columna es valido para editar osea si es 0 para que el usuario edite 
 	// devolvera true si lo es y se editara esa posicion 
 	public boolean esCeldaEditable(int fil , int col ) {
