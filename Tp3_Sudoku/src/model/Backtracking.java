@@ -14,7 +14,7 @@ public class Backtracking {
 	}
 	// -------------------------------- Rusuelve el sudoku //
 	
-	public boolean resolverSudo_Recursivo() {
+	 boolean resolverSudo_Recursivo() {
 		int [][] tablero = sudoku.getTablaSudoku();
 		
 		for (int fila = 0 ; fila < 9 ; fila ++ ) { // recorre todas las filas 
