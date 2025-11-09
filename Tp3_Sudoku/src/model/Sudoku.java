@@ -10,17 +10,8 @@ public class Sudoku {
 	
 	public Sudoku () {
 		
-	this.tablaSudoku= new int [][] {
-		    {0, 0, 0, 0, 0, 2, 1, 0, 0},
-		    {1, 0, 2, 4, 6, 0, 0, 3, 9},
-		    {0, 0, 8, 1, 9, 7, 0, 5, 0},
-		    {0, 0, 0, 2, 0, 0, 7, 9, 3},
-		    {0, 4, 7, 0, 5, 9, 0, 0, 2},
-		    {0, 0, 0, 7, 1, 6, 4, 8, 0},
-		    {9, 0, 0, 6, 0, 0, 5, 0, 0},
-		    {0, 2, 0, 0, 0, 1, 0, 0, 4},
-		    {7, 0, 5, 9, 2, 0, 0, 0, 1}
-		};
+	this.tablaSudoku= new int [9][9]; 
+		   
 	}
 
 	
@@ -36,30 +27,7 @@ public class Sudoku {
 		
 	}
 	
-	// chequea tanto a lo largo de la tabla sudoku como los bloques 3x3 
-	boolean esValido (  int fila , int col, int num ) {
-		// Fila recorre y compara toda la fila con num si hay uno igual devolvera false y no sera valido
-        for (int j = 0; j < 9; j++)
-            if (tablaSudoku[fila][j] == num) {
-                return false;
-            }
-        // Columna recorre y compara toda la columna con num y si hay uno igual devolvera false y no sera valido
-        for (int i = 0; i < 9; i++)
-            if (tablaSudoku[i][col] == num) {
-                return false;
-            }
-        // se inicia las Subtablas de 3x3 para comparar y hacer lo mismo que lo anterior , si hay alguno igual devolvera false
-        int subtablaFila = fila - fila % 3;
-        int subtablaColumna = col - col % 3;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (tablaSudoku[subtablaFila+ i][subtablaColumna + j] == num)
-                    return false;
-
-        // caso contrario sera valido 
-        return true;
-    }
-
+	
 	
 
 	
@@ -81,7 +49,7 @@ public class Sudoku {
 
 
 	// prueba main para la tabla sudoku 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		
 		Sudoku table = new Sudoku ();
 		 table.crearTabla() ;
@@ -93,6 +61,6 @@ public class Sudoku {
 		 System.out.println(table.esValido(0, 0, 7));  // devuelve false porque el num es 7 y a lo largo de la columna esta 7 
 		 System.out.println(table.esValido(0, 0, 5)); // devuelve true porque num es 5 y en la subclase como a lo largo de la columna y fila no esta el 5 
 
-	}
+	}*/
 	
 }
