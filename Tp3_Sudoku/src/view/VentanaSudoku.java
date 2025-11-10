@@ -8,10 +8,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
-public class pantallaPrincipal {
+public class VentanaSudoku {
 
 	private JFrame frame;
+	public JTextField[][] celdas = new JTextField[9][9];
 
 	/**
 	 * Launch the application.
@@ -20,7 +22,7 @@ public class pantallaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pantallaPrincipal window = new pantallaPrincipal();
+					VentanaSudoku window = new VentanaSudoku();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +34,7 @@ public class pantallaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public pantallaPrincipal() {
+	public VentanaSudoku() {
 		initialize();
 	}
 
@@ -53,13 +55,19 @@ public class pantallaPrincipal {
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 54, 468, 276);
 		frame.getContentPane().add(panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0};
+		gbl_panel.rowHeights = new int[]{0};
+		gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		JButton btnNewButton = new JButton("validar");
-		btnNewButton.setBounds(238, 341, 89, 23);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnResolver = new JButton("Resolver");
+		btnResolver.setBounds(238, 341, 89, 23);
+		frame.getContentPane().add(btnResolver);
 		
-		JButton btnNewButton_1 = new JButton("reiniciar");
-		btnNewButton_1.setBounds(344, 341, 89, 23);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton btnReiniciar = new JButton("Reiniciar");
+		btnReiniciar.setBounds(344, 341, 89, 23);
+		frame.getContentPane().add(btnReiniciar);
 	}
 }

@@ -15,7 +15,7 @@ public class Backtracking {
 	// -------------------------------- Rusuelve el sudoku //
 	
 	 boolean resolverSudo_Recursivo() {
-		int [][] tablero = sudoku.getTablaSudoku();
+		int [][] tablero = sudoku.getTablero();
 		
 		for (int fila = 0 ; fila < 9 ; fila ++ ) { // recorre todas las filas 
 			 
@@ -54,7 +54,7 @@ public class Backtracking {
 	// Se fija si es VALIDO el sudoku que se arma 
 	// chequea tanto a lo largo de la tabla sudoku como los bloques 3x3 
 		boolean esValido (  int fila , int col, int num ) {
-			int [][] tablero = sudoku.getTablaSudoku();
+			int [][] tablero = sudoku.getTablero();
 			// Fila recorre y compara toda la fila con num si hay uno igual devolvera false y no sera valido
 	        for (int j = 0; j < 9; j++)
 	            if (tablero[fila][j] == num) {
