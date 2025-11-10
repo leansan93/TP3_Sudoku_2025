@@ -15,8 +15,8 @@ public class ControladorSudoku {
 		this.vista = vista;
 		this.modelo= sudoku;	
 		 
-		 //.btnResolver.addActionListener(e -> resolverSudoku());
-	     //v.btnReiniciar.addActionListener(e -> reiniciar());
+		  vista.btnResolver.addActionListener(e -> resolverSudoku());
+	      vista.btnReiniciar.addActionListener(e -> reiniciar());
 	}
 	
 	private void resolverSudoku() {

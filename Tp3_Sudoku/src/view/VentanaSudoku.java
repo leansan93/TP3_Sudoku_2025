@@ -14,7 +14,8 @@ public class VentanaSudoku {
 
 	private JFrame frame;
 	public JTextField[][] celdas = new JTextField[9][9];
-
+	public JButton btnResolver;
+	public JButton btnReiniciar;
 	/**
 	 * Launch the application.
 	 */
@@ -62,11 +63,14 @@ public class VentanaSudoku {
 		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JButton btnResolver = new JButton("Resolver");
+//-----------------------------------------------------------------------------
+		//-- BOTONES
+		
+		btnResolver = new JButton("Resolver");
 		btnResolver.setBounds(238, 341, 89, 23);
 		frame.getContentPane().add(btnResolver);
 		
-		JButton btnReiniciar = new JButton("Reiniciar");
+		btnReiniciar = new JButton("Reiniciar");
 		btnReiniciar.setBounds(344, 341, 89, 23);
 		frame.getContentPane().add(btnReiniciar);
 	}
