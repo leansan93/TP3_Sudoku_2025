@@ -1,21 +1,28 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaSudoku {
 
 	private JFrame frame;
-	public JTextField[][] celdas = new JTextField[9][9];
-	public JButton btnResolver;
-	public JButton btnReiniciar;
+	private JTextField[][] celdas = new JTextField [9][9];
+	private JButton btnResolver;
+	private JButton btnLimpiar;
+	private JPanel panelTablero;
 	/**
 	 * Launch the application.
 	 */
@@ -36,6 +43,8 @@ public class VentanaSudoku {
 	 * Create the application.
 	 */
 	public VentanaSudoku() {
+		
+		
 		initialize();
 	}
 
@@ -53,15 +62,24 @@ public class VentanaSudoku {
 		lblNewLabel.setBounds(225, 11, 81, 31);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 54, 468, 276);
-		frame.getContentPane().add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0};
-		gbl_panel.rowHeights = new int[]{0};
-		gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		  // === PANEL PRINCIPAL ===
+        panelTablero = new JPanel();
+        panelTablero.setLayout(new GridLayout(9, 9));
+        panelTablero.setBounds(30, 50, 450, 267);
+        frame.getContentPane().add(panelTablero);
+
+        // === Crear las 81 celdas ===
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JTextField celda = new JTextField();
+                celda.setHorizontalAlignment(JTextField.CENTER);
+                celda.setFont(new Font("Tahoma", Font.BOLD, 16));
+                celda.setBackground(Color.WHITE);
+                celda.setBorder(crearBordeCelda(i, j));
+                celdas[i][j] = celda;
+                panelTablero.add(celda);
+            }
+        }
 		
 //-----------------------------------------------------------------------------
 		//-- BOTONES
@@ -70,8 +88,56 @@ public class VentanaSudoku {
 		btnResolver.setBounds(238, 341, 89, 23);
 		frame.getContentPane().add(btnResolver);
 		
-		btnReiniciar = new JButton("Reiniciar");
-		btnReiniciar.setBounds(344, 341, 89, 23);
-		frame.getContentPane().add(btnReiniciar);
+		btnLimpiar = new JButton("Limpiar");
+		
+		btnLimpiar.setBounds(344, 341, 89, 23);
+		frame.getContentPane().add(btnLimpiar);
+
+		
 	}
+	
+	
+	
+	 public int[][] obtenerTablero() {
+	        int[][] tablero = new int[9][9];
+	        for (int i = 0; i < 9; i++) {
+	            for (int j = 0; j < 9; j++) {
+	                String texto = celdas[i][j].getText();
+	                tablero[i][j] = texto.isEmpty() ? 0 : Integer.parseInt(texto);
+	            }
+	        }
+	        return tablero;
+	    }
+
+	    public void mostrarTablero(int[][] tablero) {
+	        for (int i = 0; i < 9; i++) {
+	            for (int j = 0; j < 9; j++) {
+	                celdas[i][j].setText(tablero[i][j] == 0 ? "" : String.valueOf(tablero[i][j]));
+	            }
+	        }
+	    }
+	    
+	    
+	 // --- Método para crear bordes más gruesos en los bloques 3x3 ---
+	    private javax.swing.border.Border crearBordeCelda(int fila, int col) {
+	        int top = (fila % 3 == 0) ? 3 : 1;
+	        int left = (col % 3 == 0) ? 3 : 1;
+	        int bottom = (fila == 8) ? 3 : 1;
+	        int right = (col == 8) ? 3 : 1;
+
+	        return BorderFactory.createMatteBorder(top, left, bottom, right, Color.BLACK);
+	    }
+
+	    public void mostrarMensaje(String mensaje) {
+	        JOptionPane.showMessageDialog(frame, mensaje);
+	    }
+	
+
+	    public JButton getBtnResolver() {
+	        return btnResolver;
+	    }
+
+	    public JButton getBtnLimpiar() {
+	        return btnLimpiar;
+	    }
 }

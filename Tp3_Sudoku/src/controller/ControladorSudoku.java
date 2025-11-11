@@ -1,62 +1,52 @@
 package controller;
 
-import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import model.Backtracking;
 import model.Sudoku;
-import view.*;
+import view.VentanaSudoku;
 
 public class ControladorSudoku {
 	
 	private VentanaSudoku vista;
 	private Sudoku modelo;
+
 	
 	public ControladorSudoku(VentanaSudoku vista , Sudoku sudoku) {
 		this.vista = vista;
 		this.modelo= sudoku;	
-		 
-		  vista.btnResolver.addActionListener(e -> resolverSudoku());
-	      vista.btnReiniciar.addActionListener(e -> reiniciar());
-	}
-	
-	private void resolverSudoku() {
-		 try {
-	            // Cargar datos desde la interfaz
-	            for (int i = 0; i < 9; i++) {
-	                for (int j = 0; j < 9; j++) {
-	                    String texto = vista.celdas[i][j].getText();
-	                    int valor = texto.isEmpty() ? 0 : Integer.parseInt(texto);
-	                    modelo.setValor(i, j, valor);
-	                }
-	            }
+		// Escuchar los botones
+        vista.getBtnResolver().addActionListener((ActionListener) new ResolverListener());
+        vista.getBtnLimpiar().addActionListener(new LimpiarListener());
+    }
 
-	            // Resolver
-	            Backtracking solver = new Backtracking(modelo);
-	            if (solver.resolver()) {
-	                int[][] resuelto = modelo.getTablero();
-	                for (int i = 0; i < 9; i++) {
-	                    for (int j = 0; j < 9; j++) {
-	                        vista.celdas[i][j].setText(String.valueOf(resuelto[i][j]));
-	                    }
-	                }
-	                JOptionPane.showInputDialog(vista, "¡Sudoku resuelto!");
-	            } else {
-	                JOptionPane.showInputDialog(vista, "No existe solución para este Sudoku.");
-	            }
+	// --- Listener para resolver ---
+    private class ResolverListener implements ActionListener {
+       @Override 
+       public void actionPerformed(ActionEvent e) {
+    	   int [][] tablero = vista.obtenerTablero();
+    	   modelo.setTablero(tablero);
+    	   
+    	   if ( modelo.resolver()) {
+    		   vista.mostrarTablero(modelo.getTablero());
+    		   vista.mostrarMensaje("Sudoku resuelte correctamente");
+    		   
+    	   }
+    	   else {
+    		   
+    		   vista.mostrarMensaje("No existe solucion para este Sudoku ");
+    	   }
+       }
+        
+    }
 
-		
-		
-	}
-		 catch (Exception ex) {
-	            JOptionPane.showInputDialog(vista, "Error: " + ex.getMessage());
-	        }
-	    }
-
-	    private void reiniciar() {
-	        for (int i = 0; i < 9; i++)
-	            for (int j = 0; j < 9; j++)
-	                vista.celdas[i][j].setText("");
-	    }
+    private class LimpiarListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+    	   int [][] vacio = new int [9][9];
+    	   vista.mostrarTablero(vacio);
+       }
+    }
 	
 	
 
