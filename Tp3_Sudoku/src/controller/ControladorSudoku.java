@@ -15,38 +15,32 @@ public class ControladorSudoku {
 	public ControladorSudoku(VentanaSudoku vista , Sudoku sudoku) {
 		this.vista = vista;
 		this.modelo= sudoku;	
+		// acá conectamos los botones con las acciones
+        inicializarEventos();
 		// Escuchar los botones
-        vista.getBtnResolver().addActionListener((ActionListener) new ResolverListener());
-        vista.getBtnLimpiar().addActionListener(new LimpiarListener());
-    }
-
-	// --- Listener para resolver ---
-    private class ResolverListener implements ActionListener {
-       @Override 
-       public void actionPerformed(ActionEvent e) {
-    	   int [][] tablero = vista.obtenerTablero();
-    	   modelo.setTablero(tablero);
-    	   
-    	   if ( modelo.resolver()) {
-    		   vista.mostrarTablero(modelo.getTablero());
-    		   vista.mostrarMensaje("Sudoku resuelte correctamente");
-    		   
-    	   }
-    	   else {
-    		   
-    		   vista.mostrarMensaje("No existe solucion para este Sudoku ");
-    	   }
-       }
         
     }
+	 private void inicializarEventos() {
+	        vista.getBtnResolver().addActionListener(e -> resolverSudoku());
+	        vista.getBtnLimpiar().addActionListener(e -> limpiarTablero());
+	    }
+	 private void resolverSudoku() {
+	        int[][] tablero = vista.obtenerTablero();
+	        modelo.setTablero(tablero);
 
-    private class LimpiarListener implements ActionListener {
-       @Override
-       public void actionPerformed(ActionEvent e) {
-    	   int [][] vacio = new int [9][9];
-    	   vista.mostrarTablero(vacio);
-       }
-    }
+	        if (modelo.resolver()) {
+	            vista.mostrarTablero(modelo.getTablero());
+	            vista.mostrarMensaje("¡Sudoku resuelto!");
+	        } else {
+	            vista.mostrarMensaje("No tiene solución.");
+	        }
+	    }
+
+	    private void limpiarTablero() {
+	        modelo.limpiar();
+	        vista.mostrarTablero(modelo.getTablero());
+	    }
+	
 	
 	
 

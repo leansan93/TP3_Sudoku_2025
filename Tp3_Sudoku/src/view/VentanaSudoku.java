@@ -85,6 +85,11 @@ public class VentanaSudoku {
 		//-- BOTONES
 		
 		btnResolver = new JButton("Resolver");
+		btnResolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnResolver.setBounds(238, 341, 89, 23);
 		frame.getContentPane().add(btnResolver);
 		
@@ -129,7 +134,7 @@ public class VentanaSudoku {
 	    }
 
 	    public void mostrarMensaje(String mensaje) {
-	        JOptionPane.showMessageDialog(frame, mensaje);
+	    	JOptionPane.showMessageDialog(frame, mensaje);
 	    }
 	
 
@@ -140,4 +145,9 @@ public class VentanaSudoku {
 	    public JButton getBtnLimpiar() {
 	        return btnLimpiar;
 	    }
+
+		public void mostrar() {
+			 frame.setVisible(true);
+			
+		}
 }
